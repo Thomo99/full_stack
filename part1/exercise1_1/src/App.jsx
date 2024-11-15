@@ -4,8 +4,9 @@ const Header = (props) => {
 
 const Content = (props) => {
   return <ul>
-    {props.parts.map((part, index) => 
-    <li key={index}>{part.name}: {part.num}</li>)}
+    <li>{props.part1.name}</li>
+    <li>{props.part2.name}</li>
+    <li>{props.part3.name}</li>
   </ul>
 }
 
@@ -15,17 +16,24 @@ const Total = (props) => {
 
 const App = () => {
   const course = 'Half Stack application development'
-  const parts = [
-    {name:'Fundamentals of React', num: 10},
-    {name:'Using props to pass data', num: 7},
-    {name:'State of a component', num: 14}
-  ]
+  const part1 = {
+    name: 'Fundamentals of React',
+    exercises: 10
+  }
+  const part2 = {
+    name: 'Using props to pass data',
+    exercises: 7
+  }
+  const part3 = {
+    name: 'State of a component',
+    exercises: 14
+  }
 
   return (
     <div>
       <Header course={course} />
-      <Content  parts={parts}/>
-      <Total  total = {parts[0].num + parts[1].num + parts[2].num}/>
+      <Content  part1={part1} part2={part2} part3={part3} />
+      <Total  total = {part1.exercises + part2.exercises + part3.exercises}/>
     </div>
   )
 }
