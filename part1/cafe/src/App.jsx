@@ -7,17 +7,23 @@ const Button = (props) => (
 )
   
 const Statistics = (props) => {
-  return(
-    <div>
-      <Statistic text='Good' value={props.good}/>
-      <Statistic text='Bad' value={props.bad}/>
-      <Statistic text='Neutral' value={props.neutral}/>
-      <Statistic text='All' value={props.all}/>
-      <Statistic text='Average' value={props.average}/>
-      <Statistic text='positive' value={props.positive}/>
-    </div>
-    
-  )
+  if (props.all > 0){
+    return(
+      <div>
+        <Statistic text='Good' value={props.good}/>
+        <Statistic text='Bad' value={props.bad}/>
+        <Statistic text='Neutral' value={props.neutral}/>
+        <Statistic text='All' value={props.all}/>
+        <Statistic text='Average' value={props.average}/>
+        <Statistic text='positive' value={props.positive}/>
+      </div>
+    )
+  }
+  else{
+    return(
+      <p>No feedback given</p>
+    )
+  }
 }
 
 
