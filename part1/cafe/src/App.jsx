@@ -6,7 +6,23 @@ const Button = (props) => (
   </button>
 )
   
-const Display = (props) => <p>{props.text}: {props.value}</p>
+const Statistics = (props) => {
+  return(
+    <div>
+      <Statistic text='Good' value={props.good}/>
+      <Statistic text='Bad' value={props.bad}/>
+      <Statistic text='Neutral' value={props.neutral}/>
+      <Statistic text='All' value={props.all}/>
+      <Statistic text='Average' value={props.average}/>
+      <Statistic text='positive' value={props.positive}/>
+    </div>
+    
+  )
+}
+
+
+const Statistic = (props) => <p>{props.text}: {props.value}</p>
+
 
 
 const App = () => {
@@ -48,12 +64,7 @@ return (
     <Button handleOnClick={() => updateValue(neutral, setNeutral, all, setAll)} text='Neutral'/>
     <Button handleOnClick={() => updateValue(bad, setBad, all, setAll)} text='Bad'/><br></br>
     <h1>Statistics</h1>
-    <Display text='Good' value={good}/>
-    <Display text='Neutral' value={neutral}/>
-    <Display text='Bad' value={bad}/>
-    <Display text='All' value={all}/>
-    <Display text='Average' value={calcAverage(good, bad, all)}/>
-    <Display text='Positive' value={calcPositive(good, all)} />
+    <Statistics good={good} bad={bad} neutral={neutral} all={all} average={calcAverage(good, bad, all)} positive={calcPositive(good, all)}/>  
   </div>
 )}
 
