@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import './App.css'
 
 
 const Button = (props) => (
-  <button onClick={props.handleOnClick}>{props.text}</button>
+  <button className='button' onClick={props.handleOnClick}>{props.text}</button>
 )
 
 const App = () => {
@@ -16,21 +17,37 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
+
+  
  
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0));
 
   const cycle = () => {
     return(
       setSelected(Math.floor(Math.random()* (anecdotes.length)))
     )
   }
+  const increaseVote = () => {
+      const newVotes = [...votes]
+      newVotes[selected] += 1
+      setVotes(newVotes)
+  }
+    
+
+  
 
   return (
     <div>
-      <Button handleOnClick={cycle} text='New'/>
       <div>
         {anecdotes[selected]}
       </div>
+      <Button handleOnClick={cycle} text='New'/>
+      <Button handleOnClick={increaseVote} text='Vote'/>
+      <div>
+        <p>This has {votes[selected]} votes.</p>
+      </div>
+      {votes}
     </div>
   )
 }
