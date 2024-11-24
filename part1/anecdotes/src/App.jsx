@@ -6,6 +6,8 @@ const Button = (props) => (
   <button className='button' onClick={props.handleOnClick}>{props.text}</button>
 )
 
+
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -33,6 +35,17 @@ const App = () => {
       newVotes[selected] += 1
       setVotes(newVotes)
   }
+  const findHighest = () => {
+    let maxIndex = 0
+    for (let i = 0; i < votes.length; i++){
+      if (votes[i] > votes[maxIndex]){
+        maxIndex = i
+      }
+    }
+    console.log("The highest is now ", maxIndex)
+    return maxIndex
+  }
+  
     
 
   
@@ -40,6 +53,7 @@ const App = () => {
   return (
     <div>
       <div>
+        <h3>Anecdote of the Day</h3>
         {anecdotes[selected]}
       </div>
       <Button handleOnClick={cycle} text='New'/>
@@ -47,7 +61,8 @@ const App = () => {
       <div>
         <p>This has {votes[selected]} votes.</p>
       </div>
-      {votes}
+      <h3>Anecdote With Most Votes</h3>
+      {anecdotes[findHighest()]}
     </div>
   )
 }
